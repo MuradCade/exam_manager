@@ -1,0 +1,9 @@
+li a.active {
+    background-color: #eaeef4  !important;
+    color: #285294 !important;
+}
+
+li a:hover {
+    background-color: #eaeef4;
+    color: #285192;
+}
