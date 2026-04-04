@@ -46,4 +46,27 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+
+    public function examForms()
+    {
+        return $this->hasMany(examform::class);
+    }
+
+    public function examQuestions()
+    {
+        return $this->hasMany(examquestions::class);
+    }
+
+    public function examQuestionOptions()
+    {
+        return $this->hasMany(examquestionoptions::class);
+    }
+
+
+    public function categories()
+    {
+        return $this->hasMany(category::class);
+    }
 }
