@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
+use App\Notifications\ResetPassword;
+use App\Notifications\VerifyEmailCustom;
+// use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -22,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -68,5 +71,17 @@ class User extends Authenticatable
     public function categories()
     {
         return $this->hasMany(category::class);
+    }
+
+    // verify user email 
+    public function sendEmailVerificationNotification()
+    {
+        return $this->notify(new VerifyEmailCustom());
+    }
+
+    //reset account
+    public function sendPasswordResetNotification($token)
+    {
+        return $this->notify(new ResetPassword($token));
     }
 }

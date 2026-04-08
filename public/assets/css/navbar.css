@@ -3,9 +3,10 @@
         #mainNavbar{
             background-color: #f8f9fa !important;
             box-shadow: none !important;
-           
-
+            padding-top: 6px;
+            padding-bottom: 6px;
         }
+       
         #mainNavbar.navbar-scrolled {
             background-color: #fff !important;
             /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important; */

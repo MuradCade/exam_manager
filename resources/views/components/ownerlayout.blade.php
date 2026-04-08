@@ -16,11 +16,13 @@
     <link rel="icon" href="{{ asset('assets/img/logo.ico') }}">
 
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mdb-uikit.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/minimal.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/toastcolors.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/toastr/build/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboardlayout.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
     {{-- ===== Fonts ===== --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,10 +38,12 @@
     {{ $slot }}
 
     {{-- ===== Scripts ===== --}}
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/navbar.js') }}"></script>
-    <script defer src="{{ asset('assets/js/alpine.js') }}"></script>
+   <script src="{{ asset('assets/toastr/build/toastr.min.js') }}"></script>
+<script src="{{ asset('assets/js/toastr.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script> --}}
+<script src="{{ asset('assets/js/mdb.min.js') }}"></script>
+<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+<script defer src="{{ asset('assets/js/alpine.js') }}"></script>
 
 </body>
 </html>
