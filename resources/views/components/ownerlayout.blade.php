@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-
+    @livewireStyles
 
     </style>
     
@@ -38,7 +38,7 @@
 <body class="font-inter antialiased">
 
     {{ $slot }}
-
+   @livewireScripts
     {{-- ===== Scripts ===== --}}
    <script src="{{ asset('assets/toastr/build/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/js/toastr.js') }}"></script>
