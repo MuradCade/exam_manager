@@ -11,6 +11,7 @@ class examform extends Model
     protected $fillable = [
         'title',
         'description',
+        'status',
         'category_id',
         'exam_type',
         'user_id'

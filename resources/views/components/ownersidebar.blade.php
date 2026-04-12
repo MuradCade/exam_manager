@@ -22,16 +22,16 @@
     <nav style="flex: 1; overflow-y: auto; padding: 16px 0;">
         <ul style="list-style: none; margin: 0; padding: 0;">
             <li>
-                <a href="#"  class="{{ request()->routeIs('owner.dashboard') ? 'active' : '' }} {{ request()->routeIs('admin.dashboard.*') ? 'active' : '' }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
+                <a href="{{ route('owner.dashboard') }}"  class="{{ request()->routeIs('owner.dashboard') ? 'active' : '' }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
                     <i class="fas fa-th-large" style="width: 20px; font-size: 16px;"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
             <li>
-                <a href="#"  class="{{ request()->routeIs('owner.exams.*') ? 'active' : '' }} {{ request()->routeIs('admin.dashboard.*') ? 'active' : '' }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
-                    <i class="fas fa-th-large" style="width: 20px; font-size: 16px;"></i>
-                    <span>Exams</span>
+                <a href="{{ route('exam') }}"  class="{{ request()->routeIs('exam') ? 'active' : '' }}  {{ request()->routeIs('exam.*') ? 'active':''  }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
+                    <i class="fas fa-file-circle-plus" style="width: 20px; font-size: 16px;"></i>
+                    <span>Exam</span>
                 </a>
             </li>
            
@@ -65,13 +65,40 @@
     <div style="padding: 16px 20px; border-top: 1px solid #e5e7eb; position: relative;">
         <div id="profileButton" style="display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 8px; border-radius: 8px; transition: background 0.2s;" onmouseenter="this.style.background='#f9fafb'" onmouseleave="this.style.background='transparent'">
             <div style="width: 40px; height: 40px; background-color: #2972da; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">
-                  {{ str(auth()->user()->name)->upper()->substr(0, 2) }}
+                  @php
+        $name = trim(auth()->user()->name ?? '');
+        $parts = preg_split('/\s+/', $name);
+
+        if (count($parts) > 1) {
+            $initials = strtoupper(
+                substr($parts[0], 0, 1) . substr($parts[1], 0, 1)
+            );
+        } else {
+            $half = ceil(strlen($name) / 2);
+
+            $first = substr($name, 0, 1);
+            $second = substr($name, $half, 1);
+
+            $initials = strtoupper($first . ($second ?: ''));
+        }
+        @endphp
+
+        {{ $initials }}
             </div>
             <div style="flex: 1; min-width: 0;">
                 <div style="font-size: 13px; font-weight: 600; color: #1f2937; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                     {{ auth()->user()->name }}
                 </div>
                 <div style="font-size: 11px; color: #6b7280; line-height: 1.3;">{{ auth()->user()->email }}</div>
+                 <span
+                class="badge rounded-pill border border-dark text-uppercase fw-bold text-dark"
+                style="font-size: 9.5px; padding: 4px 10px; letter-spacing: 0.5px;"
+            > 
+
+            {{ auth()->user()->role }}
+            <!-- if user has active susbcription display the subscription name-->
+           {{-- {{ $activeSubscription?->subscriptionplan?->plan_name ?? 'Free Plan' }} --}}
+            </span>
             </div>
           
         </div>
