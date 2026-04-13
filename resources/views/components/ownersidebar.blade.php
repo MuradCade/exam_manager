@@ -29,7 +29,7 @@
             </li>
 
             <li>
-                <a href="{{ route('exam') }}"  class="{{ request()->routeIs('exam') ? 'active' : '' }}  {{ request()->routeIs('exam.*') ? 'active':''  }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
+                <a href="{{ route('exam') }}"  class=" {{ request()->routeIs(['exam','exam.*']) ? 'active':''  }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
                     <i class="fas fa-file-circle-plus" style="width: 20px; font-size: 16px;"></i>
                     <span>Exam</span>
                 </a>

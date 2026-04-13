@@ -39,13 +39,32 @@
 
     {{ $slot }}
     {{-- ===== Scripts ===== --}}
-   <script src="{{ asset('assets/toastr/build/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/toastr/build/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/js/toastr.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/mdb.min.js') }}"></script> --}}
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <script defer src="{{ asset('assets/js/alpine.js') }}"></script>
-   @livewireScripts
+    @livewireScripts
+   
+ 
+    <script>
+        // this is for displaying response message when single choice question is saved
+      document.addEventListener('livewire:init', () => {
+      Livewire.on('toast', (event) => {
+      console.log('Toast event:', event);
+
+        let data = event[0]; // ✅ extract object from array
+        if(data.type == 'success'){
+
+            toastr.success(data.message);
+        }
+    });
+});
+    </script>
+   
+
+
 
 </body>
 </html>

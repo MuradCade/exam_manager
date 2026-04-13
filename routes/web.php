@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\editor\EditorController;
 use App\Http\Controllers\FrontPagecontroller;
-use App\Http\Controllers\owner\exam\Examcontroller;
+use App\Http\Controllers\owner\exam\ExamController;
 use App\Http\Controllers\owner\OwnerController;
+use App\Http\Controllers\owner\question\SingleChoiceQuestionController;
 use App\Http\Controllers\readonly\ReadonlyController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,15 +18,20 @@ Route::middleware(['auth', 'verified', 'role:owner', 'prevent-back-history'])->p
 
     Route::get('/dashboard', [OwnerController::class, 'index'])->name('owner.dashboard');
 
-    // Exam Routes Start Here
-    Route::get('/exam', [Examcontroller::class, 'index'])->name('exam');
-    Route::get('/create_exam', [Examcontroller::class, 'examcreate_index'])->name('exam.create');
-    Route::post('/create_exam', [Examcontroller::class, 'store'])->name('exam.create.submit');
+    // Exam Form Routes Start Here
+    Route::get('/exam', [ExamController::class, 'index'])->name('exam');
+    Route::get('/create_exam', [ExamController::class, 'examcreate_index'])->name('exam.create');
+    Route::post('/create_exam', [ExamController::class, 'store'])->name('exam.create.submit');
 
-    Route::get('/exam/{exam_id}/edit', [Examcontroller::class, 'edit'])->name('exam.edit.index');
-    Route::post('/exam/{exam_id}/update', [Examcontroller::class, 'update'])->name('exam.edit.update');
-    Route::get('/exam/{exam_id}/delete', [Examcontroller::class, 'destroy'])->name('exam.delete');
+    Route::get('/exam/{exam_id}/edit', [ExamController::class, 'edit'])->name('exam.edit.index');
+    Route::post('/exam/{exam_id}/update', [ExamController::class, 'update'])->name('exam.edit.update');
+    Route::get('/exam/{exam_id}/delete', [ExamController::class, 'destroy'])->name('exam.delete');
     // Exam Routes Ends Here
+
+    // Exam Questions Routes Starts Here
+    Route::get('/exam/{exam_id}/question_creation', [SingleChoiceQuestionController::class, 'index'])->name('exam.questions.index');
+
+    // Exam Questions Routes Ends Here
 });
 
 

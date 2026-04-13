@@ -109,7 +109,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end"
                                     aria-labelledby="dropdownMenuButton{{ $examdata->id }}">
                                     <li><a class="dropdown-item" href="{{ route('exam.edit.index',['exam_id'=>$examdata->id]) }}">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">Add Questions</a></li>
+                                    <li><a class="dropdown-item" href="{{route('exam.questions.index',['exam_id'=>$examdata->id])}}">Add Questions</a></li>
                                     <li><a class="dropdown-item" href="#">Enteries</a></li>
                                     <li><a class="dropdown-item" href="#">Generate Share Link</a></li>
                                     <li><a class="dropdown-item" href="{{ route('exam.delete',['exam_id' => $examdata->id]) }}">Delete</a></li>
