@@ -14,7 +14,9 @@ class ExamController
     public function index()
     {
         // fetch all exams created by authenticate current user and paginate them
-        $allexams = examform::paginate(6);
+        $allexams = examform::withSum('questions', 'marks')
+            ->where('user_id', Auth::id())
+            ->paginate(6);
         return view('owner.exam.exam_index', ['allexams' => $allexams]);
     }
 

@@ -58,9 +58,9 @@
                             <tr>
                             <th style='font-size:14px;'>#</th>
                             <th style='font-size:14px;'>Exam_Name</th>
-                            <th style='font-size:14px;'>Score</th>
                             <th style='font-size:14px;'>Exam_Type</th>
                             <th style='font-size:14px;'>Status</th>
+                            <th style='font-size:14px;'>Score</th>
                             <th style='font-size:14px;'>Duration</th>
                             <th style='font-size:14px;'>Date</th>
                             <th style='font-size:14px;'>Actions</th>
@@ -71,6 +71,8 @@
                             <tr>
                                 <td>{{($allexams->currentPage() - 1) * $allexams->perPage() + $loop->iteration}}</td>
                                 <td>{{ $examdata->title }}</td>
+                                
+                                     
                                 <td>
                                     {{
                                     match($examdata->exam_type){
@@ -80,14 +82,14 @@
                                     }
                                     }}
                                     </td>
-                                     <td>     
+                                    <td>     
                                    <span class="{{
                                     match($examdata->status){
                                     'active' => 'bg-success-light',
                                     'disabled' => 'bg-danger-light'
                                     } }} p-2 rounded"> {{ $examdata->status }} </span>
                                 </td>
-                                <td>N/A</td>
+                                <td>{{(int) $examdata->questions_sum_marks ?? 0}}</td>
                                 <td>N/A</td>
                                 <td>{{ $examdata->created_at->format('d M Y') }}</td>
 
