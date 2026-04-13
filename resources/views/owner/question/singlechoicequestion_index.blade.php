@@ -1,7 +1,7 @@
 <x-ownerlayout>
         <x-slot name="title">Exam Manager | Create Exam Questions</x-slot>
    <x-ownersidebar />
-    <x-decomentcontentarea>
+    <x-decomentcontentarea style='background-color:#cacaca !important'>
         
 
         <div class="container">
@@ -18,8 +18,8 @@
         </div>
         </div>
 
-        @livewire('livewire.singlechoice-questionmodal', ['examid' => $exam_id])
-        @livewire('livewire.displaysinglechoicequestions', ['examid' => $exam_id])
+        @livewire('livewire.single_choice.singlechoice-questionmodal', ['examid' => $exam_id])
+        @livewire('livewire.single_choice.displaysinglechoicequestions', ['examid' => $exam_id])
     </x-decomentcontentarea>
 
     

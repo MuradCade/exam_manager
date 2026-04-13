@@ -176,7 +176,7 @@ new class extends Component {
             <form wire:submit.prevent='update'>
                 @forelse ( $questions as $questiondata )
                     <div class="col-lg-8 col-md-8 col-sm-12 p-2">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm border border-sm">
 
                             <div class="mb-4 p-2">
                                 <!-- questions starts here -->
@@ -291,7 +291,9 @@ new class extends Component {
                         </div>
                     </div>
                   @empty
-                    <p class='text-sm text-black'>There is no questions to be shown , please create new questions.</p>
+                    <div class="container px-3">
+                        <p class='small text-black'>There are no questions to be shown , please create new questions.</p>
+                    </div>
                 @endforelse
             </form>
         </div>

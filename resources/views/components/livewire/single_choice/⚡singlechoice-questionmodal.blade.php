@@ -128,10 +128,12 @@ new class extends Component
 <div>
 
 <!-- Question Modal starts here -->
- <button  
-    wire:click='openModal' class="btn btn-primary shadow-0 fw-bold mb-3" >
+ <div class="container px-4">
+    <button  
+    wire:click='openModal' class="btn btn-primary shadow-0 fw-bold mb-3">
    Create New Question
 </button>
+ </div>
 
 @if ($showmodal)
 <div class="modal  d-block" style="background: rgba(0,0,0,0.5);">
