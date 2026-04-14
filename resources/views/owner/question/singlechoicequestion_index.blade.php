@@ -1,7 +1,7 @@
 <x-ownerlayout>
         <x-slot name="title">Exam Manager | Create Exam Questions</x-slot>
    <x-ownersidebar />
-    <x-decomentcontentarea style='background-color:#cacaca !important'>
+    <x-decomentcontentarea>
         
 
         <div class="container">
