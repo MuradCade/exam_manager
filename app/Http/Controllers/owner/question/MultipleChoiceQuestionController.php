@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 // use Illuminate\Database\Eloquent\ModelNotFoundException;
 // use Illuminate\Support\Facades\Auth;
 
-class SingleChoiceQuestionController
+class MultipleChoiceQuestionController
 {
 
     public function index($exam_id)
@@ -22,12 +22,13 @@ class SingleChoiceQuestionController
             if ($examform->user_id !== Auth::user()->id) {
                 return redirect()->route('exam');
             }
-            if ($examform->exam_type !== 'single_choice') {
+            if ($examform->exam_type !== 'multi_choice') {
                 return redirect()->route('exam');
             }
         } catch (ModelNotFoundException $exception) {
             return redirect()->route('exam');
         }
-        return view('owner.question.singlechoicequestion_index', ['exam_id' => $exam_id, 'exam_name' => $examform->title]);
+
+        return view('owner.question.multiplechoicequestion_index', ['exam_id' => $exam_id, 'exam_name' => $examform->title]);
     }
 }

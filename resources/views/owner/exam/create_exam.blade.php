@@ -54,7 +54,7 @@
                         <select class='form-select' style='font-size:14px;color:black;' name='exam_type'>
                             <option value="single_choice">Single Choice Questions</option>
                             <option value="multi_choice">Multiple Choice Questions</option>
-                            <option value="direct_questions">Direct Questions</option>
+                            {{-- <option value="direct_questions">Direct Questions</option> --}}
                         </select>
                          @error('exam_type')
                         <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>

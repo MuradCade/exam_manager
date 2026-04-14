@@ -76,14 +76,13 @@ new class extends Component
                 $correctIndexes[] = $index;
             }
         }
-
-        if (count($correctIndexes) !== 1) {
-            $this->addError('options.is_correct_option', 'This is a single-choice question. Please mark exactly one correct answer.');
+        // options should have two correct answer
+        if (count($correctIndexes) !== 2) {
+            $this->addError('options.is_correct_option', 'This is a multiple-choice question. Please mark exactly two correct answer.');
             return;
         }
 
         $this->resetErrorBag();
-        $correctIndex = $correctIndexes[0];
         
         // save question
         $question = examquestions::create([
@@ -93,12 +92,12 @@ new class extends Component
             'user_id'=>Auth::user()->id
         ]);
 
-        // store question option
+        // // store question option
         examquestionoptions::create([
             'question_id'=>$question->id,
             'exam_id'=>$this->examid,
             'option_text'=>array_column($this->options, 'text'),
-            'correct_option'=>$correctIndex,
+            'correct_option'=>$correctIndexes,
             'user_id'=>Auth::user()->id
         ]);
 
@@ -113,8 +112,10 @@ new class extends Component
          // close the modal
          $this->closeModal();
 
-         // create listener to notify sperate  display livewire components
+        //  create listener to notify sperate  display livewire components
             $this->dispatch('newquestion-create');
+
+            // dd($correctIndexes);
 
         
     }
@@ -131,7 +132,7 @@ new class extends Component
  <div class="container px-4">
     <button  
     wire:click='openModal' class="btn btn-primary shadow-0 fw-bold mb-3">
-   Create Single Choice Question
+   Create Multiple Choice  Question
 </button>
  </div>
 
@@ -141,7 +142,7 @@ new class extends Component
     <div class="modal-content" >
       
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style='font-size:16px !important; color:black;'>Create Single Choice Question</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style='font-size:16px !important; color:black;'>Create Multiple Choice  Question</h5>
       </div>
 
       <div class="modal-body">

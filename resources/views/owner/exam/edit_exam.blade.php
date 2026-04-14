@@ -54,7 +54,7 @@
                         <select class='form-select' style='font-size:14px;color:black;' name='exam_type'>
                             <option value="single_choice" {{ $examform->exam_type == 'single_choice'? 'selected':'' }}>Single Choice Questions</option>
                             <option value="multi_choice"  {{ $examform->exam_type == 'multi_choice'? 'selected':'' }}>Multiple Choice Questions</option>
-                            <option value="direct_questions"  {{ $examform->exam_type == 'direct_questions'? 'selected':'' }}>Direct Questions</option>
+                            {{-- <option value="direct_questions"  {{ $examform->exam_type == 'direct_questions'? 'selected':'' }}>Direct Questions</option> --}}
                         </select>
                          @error('exam_type')
                         <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>

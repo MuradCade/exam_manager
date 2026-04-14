@@ -4,6 +4,7 @@ use App\Http\Controllers\editor\EditorController;
 use App\Http\Controllers\FrontPagecontroller;
 use App\Http\Controllers\owner\exam\ExamController;
 use App\Http\Controllers\owner\OwnerController;
+use App\Http\Controllers\owner\question\MultipleChoiceQuestionController;
 use App\Http\Controllers\owner\question\SingleChoiceQuestionController;
 use App\Http\Controllers\readonly\ReadonlyController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,8 @@ Route::middleware(['auth', 'verified', 'role:owner', 'prevent-back-history'])->p
     // Exam Routes Ends Here
 
     // Exam Questions Routes Starts Here
-    Route::get('/exam/{exam_id}/question_creation', [SingleChoiceQuestionController::class, 'index'])->name('exam.questions.index');
+    Route::get('/exam/{exam_id}/question_singlechoice_creation', [SingleChoiceQuestionController::class, 'index'])->name('exam.questions.singlechoice_questions');
+    Route::get('/exam/{exam_id}/question_multiplechoice_creation', [MultipleChoiceQuestionController::class, 'index'])->name('exam.questions.multiplechoice_questions');
 
     // Exam Questions Routes Ends Here
 });

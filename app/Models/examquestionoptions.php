@@ -17,6 +17,7 @@ class examquestionoptions extends Model
     ];
     protected $casts = [
         'option_text' => 'array',
+        'correct_option' => 'array',
     ];
 
     public function question()
