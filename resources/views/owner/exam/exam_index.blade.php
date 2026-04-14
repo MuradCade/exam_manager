@@ -1,10 +1,7 @@
 <x-ownerlayout>
         <x-slot name="title">Exam Manager | Exam Lists </x-slot>
         <style>
-           /* 1. Ensure the dropdown isn't clipped by the responsive wrapper */
-    /* .table-responsive {
-        overflow: visible !important;
-    } */
+    
 
     /* 2. Higher z-index for the menu itself */
     .dropdown-menu {
@@ -15,10 +12,11 @@
     .card-body {
         overflow: visible;
     }
-    #examTable {
-    margin-bottom: 60px; /* Gives the last row's dropdown room to open downward */
-}
-        </style>
+    /* #examTable {
+    margin-bottom: 20px; /* Gives the last row's dropdown room to open downward 
+    }*/
+ 
+ </style>
    <x-ownersidebar />
     <x-decomentcontentarea>
 
@@ -95,7 +93,7 @@
 
                                 <td class=''>
                                  <!-- action button-->
-                                <div class="dropdown  ">
+                                <div class="dropdown">
                                 <button
                                     class="btn btn-link text-dark p-2"
                                     type="button"
