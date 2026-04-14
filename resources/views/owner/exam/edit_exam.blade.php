@@ -49,7 +49,7 @@
                         <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>
                          @enderror
                     </div>
-                    <div class="form-group mt-3">
+                   <!-- <div class="form-group mt-3">
                         <label class="form-label" style='font-size:14px;color:black;'>Exam Type</label>
                         <select class='form-select' style='font-size:14px;color:black;' name='exam_type'>
                             <option value="single_choice" {{ $examform->exam_type == 'single_choice'? 'selected':'' }}>Single Choice Questions</option>
@@ -59,7 +59,7 @@
                          @error('exam_type')
                         <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>
                          @enderror
-                    </div>
+                    </div> -->
                     <button class='btn btn-primary btn-sm fw-bold text-white shadow-0 mt-3 text-capitalize' style='font-size:14px;'>Submit</button>
                 </form>
                 </div>

@@ -77,11 +77,11 @@ class ExamController
                 'exam_name' => 'required|max:255|string',
                 // 'exam_description' => 'required|string',
                 'exam_status' => 'required|in:active,disabled',
-                'exam_type' => 'required|string|in:single_choice,multi_choice,direct_questions'
+                // 'exam_type' => 'required|string|in:single_choice,multi_choice,direct_questions'
             ],
             [
                 'exam_status' => 'exam status should be either active or disabled.',
-                'exam_type' => 'exam type should be either Single Choice Questions, Multiple Choice Questions or Direct Questions.',
+                // 'exam_type' => 'exam type should be either Single Choice Questions, Multiple Choice Questions or Direct Questions.',
             ]
         );
 
@@ -101,7 +101,7 @@ class ExamController
             'title' => $request->input('exam_name'),
             'description' => $request->input('exam_description'),
             'status' => $request->input('exam_status'),
-            'exam_type' => $request->input('exam_type'),
+            // 'exam_type' => $request->input('exam_type'),
         ]);
 
         return redirect()->route('exam.edit.index', ['exam_id' => $examform->id])->with('exam_form_updated', 'Exam Information Updated Successfully');
