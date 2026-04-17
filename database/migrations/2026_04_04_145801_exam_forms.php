@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('status', ['active', 'disabled']);
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->enum('exam_type', ['single_choice', 'multi_choice', 'direct_questions']);
+            $table->text('duration')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -14,6 +14,7 @@ class examform extends Model
         'status',
         'category_id',
         'exam_type',
+        'duration',
         'user_id'
     ];
 
