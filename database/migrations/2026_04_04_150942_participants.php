@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('exam_id')->constrained('exam_forms')->onDelete('cascade');
             $table->string('participant_id'); // school/university ID
             $table->string('fullname');
+            $table->text('time_spent')->nullable();
             $table->timestamps();
             $table->unique(['exam_id', 'participant_id']);
         });
