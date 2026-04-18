@@ -40,6 +40,13 @@
                          @enderror
                     </div>
                     <div class="form-group mt-3">
+                        <label class="form-label" style='font-size:14px;color:black;'>Exclude Participants</label>
+                        <input type="text" name='exclude_participants' class='form-control' style='font-size:14px' placeholder="Enter participant id's to be excluded">
+                         {{-- @error('exclude_participants')
+                        <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>
+                         @enderror --}}
+                    </div>
+                    <div class="form-group mt-3">
                         <label class="form-label" style='font-size:14px;color:black;'>Exam Status</label>
                         <select class='form-select' style='font-size:14px;color:black;' name='exam_status'>
                             <option value="active">Active</option>
@@ -59,6 +66,16 @@
                          @error('exam_type')
                         <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>
                          @enderror
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="form-label" style='font-size:14px;color:black;'>Exam Duration</label>
+                        <select class='form-select' name='duration' style='font-size:14px;color:black;'>
+                            <option value="1:00">1 Hour</option>
+                            <option value="2:00">2 Hour</option>
+                            <option value="3:00">3 Hour</option>
+                            <option value="4:00">4 Hour</option>
+                            <option value="5:00">5 Hour</option>
+                        </select>
                     </div>
                     <button class='btn btn-primary btn-sm fw-bold text-white shadow-0 mt-3 text-capitalize' style='font-size:14px;'>Submit</button>
                 </form>

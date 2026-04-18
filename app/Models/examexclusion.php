@@ -14,6 +14,9 @@ class examexclusion extends Model
         'participant_id'
     ];
 
+    protected $casts = [
+        'participant_id' => 'array',
+    ];
     public function exam()
     {
         return $this->belongsTo(examform::class, 'exam_id');

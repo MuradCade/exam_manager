@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\owner\exam;
 
+use App\Models\examexclusion;
 use App\Models\examform;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -43,13 +44,23 @@ class ExamController
             ]
         );
 
-        examform::create([
+        $examform = examform::create([
             'title' => $request->input('exam_name'),
             'description' => $request->input('exam_description'),
             'status' => $request->input('exam_status'),
+            'duration' => $request->input('duration'),
             'exam_type' => $request->input('exam_type'),
             'user_id' => Auth::user()->id
         ]);
+
+        // store excluded participants if the input field of exclude_participants is not empty
+        // if (!empty($request->input('exclude_participants'))) {
+        $participants = explode(',', $request->input('exclude_participants'));
+        examexclusion::create([
+            'exam_id' => $examform->id,
+            'participant_id' => $participants
+        ]);
+        // }
 
         return redirect()->route('exam.create')->with('new_exam_creaction', 'Successfully Created New Exam');
     }
@@ -58,7 +69,7 @@ class ExamController
     {
         try {
             // 1.check if exam form exist
-            $examform = examform::findOrFail($exam_id);
+            $examform = examform::with('exclusions')->findOrFail($exam_id);
             // 2. check if the current user owns the current exam form
             if ($examform->user_id !== Auth::user()->id) {
                 return redirect()->route('exam');
@@ -100,9 +111,25 @@ class ExamController
         $examform->update([
             'title' => $request->input('exam_name'),
             'description' => $request->input('exam_description'),
+            'duration' => $request->input('duration'),
             'status' => $request->input('exam_status'),
             // 'exam_type' => $request->input('exam_type'),
         ]);
+
+        // if the participant excluded is not empty , update its content
+        if (!empty($request->input('exclude_participants'))) {
+            // get participant excluded
+            $excludedparticipant = examexclusion::where('exam_id', $exam_id)->first();
+            // $participants = array_map('trim', explode(',', $request->input('exclude_participants')));
+            $participants = explode(',', $request->input('exclude_participants'));
+            if ($excludedparticipant) {
+                $excludedparticipant->update([
+                    'participant_id' => $participants
+                ]);
+            }
+        }
+
+
 
         return redirect()->route('exam.edit.index', ['exam_id' => $examform->id])->with('exam_form_updated', 'Exam Information Updated Successfully');
     }

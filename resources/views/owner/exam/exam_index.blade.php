@@ -88,7 +88,15 @@
                                     } }} p-2 rounded"> {{ $examdata->status }} </span>
                                 </td>
                                 <td>{{(int) $examdata->questions_sum_marks ?? 0}}</td>
-                                <td>N/A</td>
+                                <td>{{
+                                    match($examdata->duration){
+                                    '1:00' => '1 Hour',
+                                    '2:00' => '2 Hour',
+                                    '3:00' => '3 Hour',
+                                    '4:00' => '4 Hour',
+                                    '5:00' => '5 Hour',
+                                    }
+                                    }}</td>
                                 <td>{{ $examdata->created_at->format('d M Y') }}</td>
 
                                 <td class=''>
@@ -116,7 +124,7 @@
                                     }
                                     }}">Add Questions</a></li>
                                     <li><a class="dropdown-item" href="#">Enteries</a></li>
-                                    <li><a class="dropdown-item" href="#">Generate Share Link</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.studentform.index',['exam_id'=>base64_encode($examdata->id)]) }}">Generate Share Link</a></li>
                                     <li><a class="dropdown-item" href="{{ route('exam.delete',['exam_id' => $examdata->id]) }}">Delete</a></li>
                                 </ul>
                                 </div>

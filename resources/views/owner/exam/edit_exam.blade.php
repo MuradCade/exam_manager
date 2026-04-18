@@ -39,6 +39,17 @@
                         <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>
                          @enderror
                     </div>
+                    @php
+                        $excluded = $examform->exclusions->first();
+                        $participants = $excluded ? implode(',', $excluded->participant_id) : '';
+                    @endphp
+                    <div class="form-group mt-3">
+                        <label class="form-label" style='font-size:14px;color:black;'>Exclude Participants</label>
+                        <input type="text" name='exclude_participants' class='form-control' style='font-size:14px' placeholder="Enter participant id's to be excluded" value="{{$participants}}">
+                         {{-- @error('exclude_participants')
+                        <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>
+                         @enderror --}}
+                    </div>
                     <div class="form-group mt-3">
                         <label class="form-label" style='font-size:14px;color:black;'>Exam Status</label>
                         <select class='form-select' style='font-size:14px;color:black;' name='exam_status'>
@@ -48,6 +59,16 @@
                          @error('exam_status')
                         <p class='text-danger '  style='font-size:14px;'>{{$message}}</p>
                          @enderror
+                    </div>
+                     <div class="form-group mt-3">
+                        <label class="form-label" style='font-size:14px;color:black;'>Exam Duration</label>
+                        <select class='form-select' name='duration' style='font-size:14px;color:black;'>
+                            <option value="1:00" {{ $examform->duration == '1:00' ? 'selected' : '' }}>1 Hour</option>
+                            <option value="2:00" {{ $examform->duration == '2:00' ? 'selected' : '' }} >2 Hour</option>
+                            <option value="3:00" {{ $examform->duration == '3:00' ? 'selected' : '' }}>3 Hour</option>
+                            <option value="4:00" {{ $examform->duration == '4:00' ? 'selected' : '' }}>4 Hour</option>
+                            <option value="5:00" {{ $examform->duration == '5:00' ? 'selected' : '' }}>5 Hour</option>
+                        </select>
                     </div>
                    <!-- <div class="form-group mt-3">
                         <label class="form-label" style='font-size:14px;color:black;'>Exam Type</label>
