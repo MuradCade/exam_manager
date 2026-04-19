@@ -10,6 +10,10 @@ use App\Http\Controllers\readonly\ReadonlyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontPagecontroller::class, 'index'])->name('home');
+// exam frontend routes starts here
+Route::get('/exam/{exam_id}/exam_submission', [FrontPagecontroller::class, 'studentform'])->name('frontend.studentform.index');
+
+// exam frontend routes ends here
 
 
 /*

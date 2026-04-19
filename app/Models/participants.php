@@ -11,8 +11,8 @@ class participants extends Model
     protected $fillable = [
         'exam_id',
         'participant_id',
-        'time_spent',
-        'fullname'
+        'fullname',
+        'time_spent'
     ];
 
     public function examForm()

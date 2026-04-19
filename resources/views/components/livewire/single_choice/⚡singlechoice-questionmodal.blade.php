@@ -130,7 +130,7 @@ new class extends Component
 <!-- Question Modal starts here -->
  <div class="container px-4">
     <button  
-    wire:click='openModal' class="btn btn-primary shadow-0 fw-bold mb-3">
+    wire:click='openModal' wire:loading.attr="disabled"  class="btn btn-primary shadow-0 fw-bold mb-3">
    Create Single Choice Question
 </button>
  </div>

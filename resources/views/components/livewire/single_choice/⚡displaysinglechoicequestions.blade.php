@@ -175,9 +175,8 @@ new class extends Component {
         <div class="row mt-4">
             <form wire:submit.prevent='update'>
                 @forelse ( $questions as $questiondata )
-                    <div class="col-lg-8 col-md-8 col-sm-12 p-2">
+                    <div class="col-lg-8 col-md-8 col-sm-12 p-2" >
                         <div class="card shadow-sm border border-sm">
-
                             <div class="mb-4 p-2">
                                 <!-- questions starts here -->
                                 <div class="d-flex justify-content-between align-items-start p-2 border-bottom">
