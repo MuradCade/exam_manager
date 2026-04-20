@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/minimal.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/toastr/build/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/toastcolors.css') }}">
 
     {{-- ===== Fonts ===== --}}
@@ -37,9 +38,31 @@
 
     {{-- ===== Scripts ===== --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/toastr/build/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/toastr.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/mdb.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/navbar.js') }}"></script> --}}
     {{-- <script defer src="{{ asset('assets/js/alpine.js') }}"></script> --}}
 
+    <script>
+        // this is for displaying response message when single choice question is saved
+      document.addEventListener('livewire:init', () => {
+      Livewire.on('toast', (event) => {
+      console.log('Toast event:', event);
+
+        let data = event[0]; // ✅ extract object from array
+        if(data.type == 'success'){
+
+            toastr.success(data.message);
+        }
+        if(data.type == 'error'){
+
+            toastr.error(data.message);
+        }
+    });
+});
+    </script>
 </body>
 </html>
