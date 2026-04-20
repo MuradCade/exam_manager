@@ -55,9 +55,9 @@
                                             <th style='font-size:14px;color:black;'>Submitted_Date</th>
                                             <th style='font-size:14px;color:black;'>Actions</th>
                                         </tr>
-                                        <thead>
-                                            @forelse ($participantsdata as $participantdata)
+                                    </thead>
                                         <tbody>
+                                            @forelse ($participantsdata as $participantdata)
                                             <tr>
                                                 <td style='font-size:14px;color:#484848;'>
                                                     {{ ($participantsdata->currentPage() - 1) * $participantsdata->perPage() + $loop->iteration }}
@@ -67,7 +67,7 @@
                                                 <td style='font-size:14px;color:#484848;'>
                                                     {{ $participantdata->fullname }}</td>
                                                 <td style='font-size:14px;color:#484848;'>
-                                                    {{ $participantdata->calculated_score }} / {{ (int) $totalMarks }}
+                                                    {{ $participantdata->calculated_score ?? '0' }} / {{ (int) $totalMarks }}
                                                 </td>
                                                 <td style='font-size:14px;color:#484848;'>
                                                     {{ $participantdata->time_spent ?? 'N/A' }}</td>
@@ -79,14 +79,14 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    @empty
-                                        <tr>
-                                            <td colspan="8" class='text-center'>
-                                                There is nothing to be shown.
-                                            </td>
+                                            @empty
+                                            <tr>
+                                                <td colspan="8" class='text-center'>
+                                                    There is nothing to be shown.
+                                                </td>
                                         </tr>
                                         @endforelse
+                                        </tbody>
                                         <!-- entries  not found message when searching-->
                                         <tr class="no-search" style="display:none;">
                                             <td colspan="8" class="text-center">

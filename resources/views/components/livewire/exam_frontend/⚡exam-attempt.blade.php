@@ -74,6 +74,23 @@ public function save_exam()
 {
     $result = [];
 
+    // prevent participant from submitting exam answers without chosing 0 options
+    $totalQuestions = count($this->questions);
+
+    $answeredCount = collect($this->answer)
+        ->filter(fn($options) => collect($options)->contains(true))
+        ->count();
+
+    if ($answeredCount < $totalQuestions) {
+        // This stops the function here and prevents the code below from running
+       $this->dispatch('toast', [
+            'type' => 'error',
+            'message' => 'Please answers all exam questions before clicking submit buttons'
+        ]);
+        return;
+    }
+
+
     // Step 1: Flatten answers
     foreach ($this->answer as $questionId => $options) {
         $result[$questionId] = array_key_first($options);
@@ -171,7 +188,7 @@ public function save_exam()
                     class='btn btn-secondary btn-sm shadow-0 text-capitalize fw-bold mt-3' 
                     style='font-size:14px;' wire:click='exitExam'>Exit Exam</button> 
                 <!-- show exam submit if exam has already questions -->    
-                @if($questions != null)
+                @if(count($questions) > 0)
                 <button type="submit" 
                 class='btn btn-primary btn-sm shadow-0 text-capitalize fw-bold mt-3' 
                 style='font-size:14px;'>Submit Exam</button>
