@@ -70,7 +70,7 @@
                                                     {{ $participantdata->calculated_score ?? '0' }} / {{ (int) $totalMarks }}
                                                 </td>
                                                 <td style='font-size:14px;color:#484848;'>
-                                                    {{ $participantdata->time_spent ?? 'N/A' }}</td>
+                                                    {{ $participantdata->time_spent_formatted ?? 'N/A' }}</td>
                                                 <td style='font-size:14px;color:#484848;'>
                                                     {{ $participantdata->created_at->format('d M Y') }}</td>
                                                 <td style='font-size:14px;color:#484848;'>

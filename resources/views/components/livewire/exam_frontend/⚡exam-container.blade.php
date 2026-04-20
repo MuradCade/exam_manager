@@ -23,7 +23,7 @@ new class extends Component
     #[On('exam_submitted')]
     public function endExam(){
            $this->showExam = false;
-           $this->examMessage = ['success'=>"You Successfully Submitted Exam Answers."];
+           $this->examMessage = ['success'=>"Exam answers submitted successfully."];
     }
 
 

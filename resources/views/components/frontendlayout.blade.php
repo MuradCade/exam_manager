@@ -42,7 +42,6 @@
     <script src="{{ asset('assets/js/toastr.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/mdb.min.js') }}"></script> --}}
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/navbar.js') }}"></script> --}}
     {{-- <script defer src="{{ asset('assets/js/alpine.js') }}"></script> --}}
 
