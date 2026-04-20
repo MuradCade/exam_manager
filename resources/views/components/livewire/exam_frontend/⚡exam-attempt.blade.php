@@ -137,7 +137,7 @@ public function save_exam()
                    <form wire:submit.prevent='save_exam'>
                    @forelse ($questions as $question)
 
-                <div class="mb-4"> {{-- space between questions --}}
+                    <div class="mb-4"> {{-- space between questions --}}
                     
                     <h4 class="text-capitalize mb-3" style="font-size:15px; color:black;">
                         {{ $question->question_text }}
@@ -167,15 +167,15 @@ public function save_exam()
             <p>Exam current has no questions, check back later.</p>
             @endforelse
                 <div>
-
-                <button type="button" 
-                class='btn btn-secondary btn-sm shadow-0 text-capitalize fw-bold mt-3' 
-                style='font-size:14px;' wire:click='exitExam'>Exit Exam</button> 
-
+                    <button type="button" 
+                    class='btn btn-secondary btn-sm shadow-0 text-capitalize fw-bold mt-3' 
+                    style='font-size:14px;' wire:click='exitExam'>Exit Exam</button> 
+                <!-- show exam submit if exam has already questions -->    
+                @if($questions != null)
                 <button type="submit" 
                 class='btn btn-primary btn-sm shadow-0 text-capitalize fw-bold mt-3' 
                 style='font-size:14px;'>Submit Exam</button>
-
+                @endif
                 </div>
                     </form>
                    <!-- dislaying questions and options ends here -->

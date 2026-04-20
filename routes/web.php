@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\editor\EditorController;
 use App\Http\Controllers\FrontPagecontroller;
+use App\Http\Controllers\owner\allentries\AllEntriesController;
 use App\Http\Controllers\owner\exam\ExamController;
 use App\Http\Controllers\owner\OwnerController;
 use App\Http\Controllers\owner\question\MultipleChoiceQuestionController;
@@ -36,8 +37,12 @@ Route::middleware(['auth', 'verified', 'role:owner', 'prevent-back-history'])->p
     // Exam Questions Routes Starts Here
     Route::get('/exam/{exam_id}/question_singlechoice_creation', [SingleChoiceQuestionController::class, 'index'])->name('exam.questions.singlechoice_questions');
     Route::get('/exam/{exam_id}/question_multiplechoice_creation', [MultipleChoiceQuestionController::class, 'index'])->name('exam.questions.multiplechoice_questions');
-
     // Exam Questions Routes Ends Here
+
+    // Exam All Entries Routes Starts Here
+    Route::get('/exam/{exam_id}/allexam_entries', [AllEntriesController::class, 'index'])->name('exam.allentries.index');
+    Route::get('/exam/{exam_id}/allexam_entries/{participant_id}/delete', [AllEntriesController::class, 'delete_participants'])->name('exam.allentries.participants.delete');
+    // Exam All Entries Routes Ends Here
 });
 
 

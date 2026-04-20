@@ -66,7 +66,8 @@
                         </thead>
 
                         @forelse ($allexams as $examdata)
-                            <tr>
+                        <tbody>    
+                        <tr>
                                 <td>{{($allexams->currentPage() - 1) * $allexams->perPage() + $loop->iteration}}</td>
                                 <td>{{ $examdata->title }}</td>
                                 
@@ -123,7 +124,7 @@
                                     'multi_choice'=> route('exam.questions.multiplechoice_questions',['exam_id'=>$examdata->id]),
                                     }
                                     }}">Add Questions</a></li>
-                                    <li><a class="dropdown-item" href="#">Enteries</a></li>
+                                    <li><a class="dropdown-item" href="{{route('exam.allentries.index',['exam_id'=>base64_encode($examdata->id)])}}">Enteries</a></li>
                                     <li><a class="dropdown-item" href="{{ route('frontend.studentform.index',['exam_id'=>base64_encode($examdata->id)]) }}">Generate Share Link</a></li>
                                     <li><a class="dropdown-item" href="{{ route('exam.delete',['exam_id' => $examdata->id]) }}">Delete</a></li>
                                 </ul>
@@ -131,6 +132,7 @@
                                  <!-- action button-->
                                 </td>
                             </tr>
+                        </tbody>
                         @empty
                             <tr>
                                <td colspan="8" class='text-center'>
