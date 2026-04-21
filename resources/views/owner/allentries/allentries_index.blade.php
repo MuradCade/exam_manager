@@ -74,9 +74,14 @@
                                                 <td style='font-size:14px;color:#484848;'>
                                                     {{ $participantdata->created_at->format('d M Y') }}</td>
                                                 <td style='font-size:14px;color:#484848;'>
-                                                    <a href="{{ route('exam.allentries.participants.delete',["exam_id"=>base64_encode($examform->id),'participant_id'=>base64_encode($participantdata->id)]) }}" class='text-danger  btn-sm shadow-0 text-capitalize'>
-                                                        <i class='fa fa-trash'></i>
+                                                    <a href="{{ route('exam.single_participants_entry',['exam_id'=>base64_encode($examform->id),'participant_id'=>base64_encode($participantdata->id)]) }}" class='text-primary  btn-sm shadow-0 text-capitalize me-2'>
+                                                        <i class='fa fa-file' style='font-size:18px !important;'></i>
                                                     </a>
+
+                                                    <a  href="{{ route('exam.allentries.participants.delete',["exam_id"=>base64_encode($examform->id),'participant_id'=>base64_encode($participantdata->id)]) }}" class='text-danger  btn-sm shadow-0 text-capitalize'>
+                                                        <i class='fa fa-trash' style='font-size:18px !important;'></i>
+                                                    </a>
+
                                                 </td>
                                             </tr>
                                             @empty

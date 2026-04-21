@@ -21,7 +21,9 @@ class AllEntriesController
         }
 
         // 1. Fetch participants
-        $participantsdata = participants::where('exam_id', $examId)->paginate(10);
+        $participantsdata = participants::where('exam_id', $examId)
+            ->orderBy('id', 'asc')
+            ->paginate(10);
 
         // IMPORTANT: We need the list of 'participant_id' strings (the VARCHAR ones) 
         // to match your participant_option_answers table
