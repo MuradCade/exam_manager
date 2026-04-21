@@ -24,20 +24,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # ---------- Node / NPM ----------
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Clean install NPM dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install --no-optional
-
-      - name: Build frontend assets
-        run: npm run build
-
       # ---------- FTP Deploy ----------
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -49,5 +35,4 @@ jobs:
           exclude: |
             **/.git*
             **/.github/**
-            **/node_modules/**
             **/.env
