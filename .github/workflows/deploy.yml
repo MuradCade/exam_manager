@@ -22,17 +22,18 @@ jobs:
           extensions: mbstring, bcmath, pdo_mysql
 
       - name: Install Composer dependencies
-        run: |
-          composer install --no-dev --optimize-autoloader
+        run: composer install --no-dev --optimize-autoloader
 
       # ---------- Node / NPM ----------
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
-      - name: Install NPM dependencies
-        run: npm install
+      - name: Clean install NPM dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install --no-optional
 
       - name: Build frontend assets
         run: npm run build
