@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exam_id')->constrained('exam_forms')->onDelete('cascade');
-            $table->string('participant_id'); // school/university ID
+            $table->unsignedBigInteger('participant_id'); // school/university ID
             $table->string('fullname');
             $table->text('time_spent')->nullable();
             $table->timestamps();
