@@ -44,16 +44,24 @@ new class extends Component
             $this->addError('studentid','You are not allowed to take this exam.');
             
         }else{
-            // check if student/participant already submitted exam
-            $participants_alreadysubmitted = participants::where('participant_id',$this->studentid)->first();
-
-            if($participants_alreadysubmitted){
+            
+            // Check if this specific student has already submitted THIS specific exam
+            $hasSubmitted = participants::where('participant_id', $this->studentid)
+            ->where('exam_id',$this->examform->id)->exists();
+            
+            // dd(['studentid'=>$this->studentid, 'has_submitted'=>$hasSubmitted,"examid"=>$this->examform->id]);
+            if($hasSubmitted){
                 $this->resetErrorBag();
                 $this->addError('studentid',"You cannot retake the exam because you have already submitted it.");
             }else{
 
                 $this->dispatch('student_is_allowed',participantid:$this->studentid,participantfullname:$this->studentfullname);
             }
+
+        }
+            
+
+
            // store the participant data
             // $participantdata = participants::create([
             //     'exam_id' => $this->examform->id,
@@ -61,7 +69,7 @@ new class extends Component
             //     'fullname' => $this->studentfullname
             // ]); 
             // $this->dispatch('student_is_allowed', participantid: $participantdata->id)->toParent();
-        }
+        
             
         
     }

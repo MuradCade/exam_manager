@@ -187,7 +187,7 @@ new class extends Component {
                             </div>
                         </div>
 
-                        <div style="height: 90px; width: 100%;"></div>
+                        {{-- <div style="height: 90px; width: 100%;"></div> --}}
                     @endif
                     <!-- timer ends here-->
                     <div class="card-body">
