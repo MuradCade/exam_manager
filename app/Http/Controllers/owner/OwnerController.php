@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\owner;
+namespace App\Http\Controllers\Owner;
 
 class OwnerController
 {

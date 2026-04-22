@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\readonly;
+namespace App\Http\Controllers\Readonly;
 
 class ReadonlyController
 {

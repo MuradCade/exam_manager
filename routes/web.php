@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\editor\EditorController;
+use App\Http\Controllers\Editor\EditorController;
 use App\Http\Controllers\FrontPagecontroller;
-use App\Http\Controllers\owner\allentries\AllEntriesController;
-use App\Http\Controllers\owner\allentries\SingleEntryController;
-use App\Http\Controllers\owner\exam\ExamController;
-use App\Http\Controllers\owner\OwnerController;
-use App\Http\Controllers\owner\question\MultipleChoiceQuestionController;
-use App\Http\Controllers\owner\question\SingleChoiceQuestionController;
-use App\Http\Controllers\readonly\ReadonlyController;
+use App\Http\Controllers\Owner\Allentries\AllEntriesController;
+use App\Http\Controllers\Owner\Allentries\SingleEntryController;
+use App\Http\Controllers\Owner\Exam\ExamController;
+use App\Http\Controllers\Owner\OwnerController;
+use App\Http\Controllers\Owner\Question\MultipleChoiceQuestionController;
+use App\Http\Controllers\Owner\Question\SingleChoiceQuestionController;
+use App\Http\Controllers\Readonly\ReadonlyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontPagecontroller::class, 'index'])->name('home');

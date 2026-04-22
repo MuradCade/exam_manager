@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\owner\exam;
+namespace App\Http\Controllers\Owner\Exam;
 
 use App\Models\examexclusion;
 use App\Models\examform;

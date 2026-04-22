@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\owner\question;
+namespace App\Http\Controllers\Owner\Question;
 
 use App\Models\examform;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

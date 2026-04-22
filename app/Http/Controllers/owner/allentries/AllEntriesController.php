@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\owner\allentries;
+namespace App\Http\Controllers\Owner\Allentries;
 
 use App\Models\examform;
 use App\Models\examquestions;

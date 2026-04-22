@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\editor;
+namespace App\Http\Controllers\Editor;
 
 class EditorController
 {
