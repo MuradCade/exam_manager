@@ -4,13 +4,13 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 mt-4 mx-auto">
-                <div class="card">
+                <div x-data="{ loading: false }" class="card">
                     <h4 class="card-header small" style='font-size:17px;color:black;'>
                         Login
                     </h4>
                     <div class="card-body">
                        
-                        <form action="{{ route('login') }}" method='POST'>
+                        <form action="{{ route('login') }}" method='POST' x-on:submit.prevent="loading = true; $el.submit()">
                             @csrf
                           
                             <div class="form-group mt-2">
@@ -35,7 +35,14 @@
                                 <input type="checkbox" class="form-check-input mt-1" id="rememberMe" name="remember">
                                 <label class="form-check-label" for="rememberMe" style='font-size:15px;color:black;'>Remember Me</label>
                             </div>
-                            <button class='btn btn-primary btn-sm fw-bold text-white mt-2 shadow-0 text-capitalize' style='font-size:15px;'>Submit</button>
+                            <button 
+                            class='btn btn-primary btn-sm fw-bold text-white mt-2 shadow-0 text-capitalize' 
+                            style='font-size:15px;'
+                            :disabled="loading">
+                             <span x-show="loading">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true">
+                            </span></span>
+                            Submit</button>
                         </form>
                     </div>
                 </div>
