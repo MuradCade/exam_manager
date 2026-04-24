@@ -10,7 +10,9 @@
                class=" mb-3">
                    <i class="fas fa-arrow-left me-3"></i>
                </a>
-            <h4 style="font-size:16px;color:black;" class="mb-3 fw-bold">Exam Question List  <span class='text-capitalize'>({{ $exam_name }})</span></h4>
+            <h4 style="font-size:16px;color:black;" class="mb-3 fw-bold">Exam Question List  <span class="text-truncate d-inline-block" style="max-width: 250px; vertical-align: bottom;">
+                            ({{ $exam_name }})
+                        </span></h4>
         </div>
 
         <div class="row">
