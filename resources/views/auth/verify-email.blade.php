@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 mt-4 mx-auto">
-                <div class="card">
+                <div x-data="{ loading: false }" class="card">
                     <h4 class="card-header small" style="font-size:17px;color:black;">
                         Verify Email
                     </h4>
@@ -23,9 +23,17 @@
 
                     <p style="color: #555; font-size: 14px; margin-top: 30px;">
                     Didn’t receive the email? 
-                    <form method="POST" action="{{ route('verification.send') }}">
+                    <form method="POST" action="{{ route('verification.send') }}" x-on:submit="loading = true">
                         @csrf
-                        <button type="submit" class='btn btn-primary btn-sm shadow-0 text-capitalize fw-bold' style='font-size:15px;'>Resend Verification Email</button>
+                        <button 
+                        type="submit" 
+                        class='btn btn-primary btn-sm shadow-0 text-capitalize fw-bold' 
+                        style='font-size:15px;'
+                        :disabled="loading">
+                        <span x-show="loading">
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true">
+                        </span></span>
+                        Resend Verification Email</button>
                     </form>
                 </p>
                     </div>
