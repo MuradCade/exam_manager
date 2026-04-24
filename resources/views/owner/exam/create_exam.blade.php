@@ -16,12 +16,12 @@
         <!-- exam creation form starts here-->
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="card shadow-sm">
+                <div x-data="{ loading: false }" class="card shadow-sm">
                     <div class="card-body">
                         @if (session()->has('new_exam_creaction'))
                         <p class='bg-success-light p-2'>{{session('new_exam_creaction')}}</p>                            
                         @endif
-                <form action='{{ route('exam.create.submit') }}' method='POST'>
+                <form action='{{ route('exam.create.submit') }}' method='POST' x-on:submit="loading = true">
                     @csrf
                     <div class="form-group">
                         <label class="form-label" style='font-size:14px;color:black;'>Exam Name</label>
@@ -77,7 +77,14 @@
                             <option value="5:00">5 Hour</option>
                         </select>
                     </div>
-                    <button class='btn btn-primary btn-sm fw-bold text-white shadow-0 mt-3 text-capitalize' style='font-size:14px;'>Submit</button>
+                    <button 
+                    class='btn btn-primary btn-sm fw-bold text-white shadow-0 mt-3 text-capitalize' 
+                    style='font-size:14px;'
+                    :disabled="loading">
+                     <span x-show="loading">
+                     <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true">
+                     </span></span>
+                     Submit</button>
                 </form>
                 </div>
                 </div>

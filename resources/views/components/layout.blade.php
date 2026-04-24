@@ -39,7 +39,7 @@
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/navbar.js') }}"></script>
-    {{-- <script defer src="{{ asset('assets/js/alpine.js') }}"></script> --}}
+    <script  src="{{ asset('assets/js/alpine.js') }}"></script>
 
 </body>
 </html>

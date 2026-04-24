@@ -8,9 +8,9 @@
                     <h4 class="card-header small" style='font-size:16px; color:black;'>
                       Forget Password
                     </h4>
-                    <div class="card-body">
+                    <div x-data="{ loading: false }" class="card-body">
                        
-                        <form action="{{ route('password.update') }}" method='POST'>
+                        <form action="{{ route('password.update') }}" method='POST' x-on:submit="loading = true">
                             @csrf
                           
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
@@ -38,7 +38,14 @@
                                 @enderror
                             </div>
                           
-                            <button class='btn btn-primary btn-sm fw-bold text-white mt-2 text-capitalize shadow-0' style='font-size:15px;'>Submit</button>
+                            <button 
+                            class='btn btn-primary btn-sm fw-bold text-white mt-2 text-capitalize shadow-0' 
+                            style='font-size:15px;'
+                            :disabled="loading">
+                            <span x-show="loading">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true">
+                            </span></span>
+                            Submit</button>
                         </form>
                     </div>
                 </div>

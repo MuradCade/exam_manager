@@ -28,7 +28,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-11 col-md-11 col-sm-12 mt-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <!-- search exam form by exam name -->
@@ -65,8 +65,9 @@
                                             <tr>
                                                 <td>{{ ($allexams->currentPage() - 1) * $allexams->perPage() + $loop->iteration }}
                                                 </td>
-                                                <td>{{ $examdata->title }}</td>
-
+                                               <td style="max-width: 250px; word-break: break-word; white-space: normal;">
+                                                    {{ $examdata->title }}
+                                                </td>
 
                                                 <td>
                                                     {{ match ($examdata->exam_type) {
