@@ -10,7 +10,7 @@
                     </h4>
                     <div class="card-body">
                        
-                        <form action="{{ route('login') }}" method='POST' x-on:submit.prevent="loading = true; $el.submit()">
+                        <form action="{{ route('login') }}" method='POST' x-on:submit="loading = true">
                             @csrf
                           
                             <div class="form-group mt-2">
