@@ -167,7 +167,6 @@
 
                     <div class="modal-header">
                         <h5 class="modal-title" style='font-size:15px;color:black;'>Generate Shareable Exam Link</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
                     <div class="modal-body">
@@ -175,14 +174,14 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary text-capitalize shadow-0 fw-bold" style='font-size:13px;'
-                            onclick="copyLink()">
-                            Copy to Clipboard
+                        <button class="btn btn-secondary text-capitalize shadow-0 fw-bold" style='font-size:13px;'
+                            data-bs-dismiss="modal">
+                            Close
                         </button>
 
                         <a id="visitLinkBtn" href="#" target="_blank"
-                            class="btn btn-secondary text-capitalize shadow-0 fw-bold" style='font-size:13px;'>
-                            Visit Exam
+                            class="btn btn-primary text-capitalize shadow-0 fw-bold" style='font-size:13px;'>
+                            Preview Exam Submission
                         </a>
                     </div>
 
@@ -246,21 +245,6 @@
             // show bootstrap modal
             const modal = new bootstrap.Modal(document.getElementById('shareLinkModal'));
             modal.show();
-        }
-
-        function copyLink() {
-            const input = document.getElementById("examLinkInput");
-            input.select();
-            input.setSelectionRange(0, 99999);
-
-            navigator.clipboard.writeText(input.value);
-                // close modal correctly
-        const modalEl = document.getElementById('shareLinkModal');
-        const modalInstance = bootstrap.Modal.getInstance(modalEl);
-        modalInstance.hide();
-
-            toastr.success('Exam Shareable Link Copied To Clipboard')
-
         }
     </script>
 </x-ownerlayout>
