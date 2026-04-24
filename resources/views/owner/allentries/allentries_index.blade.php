@@ -9,7 +9,9 @@
                     <i class="fas fa-arrow-left me-3"></i>
                 </a>
                 <h4 style="font-size:16px;color:black;" class="mb-3 fw-bold">All Exam Entries List
-                    ({{ $examform->title }})</h4>
+                    <span class="text-truncate d-inline-block" style="max-width: 250px; vertical-align: bottom;">
+                            ({{ $examform->title }})
+                        </span></h4>
             </div>
             <!-- row starts here-->
             <div class="row">

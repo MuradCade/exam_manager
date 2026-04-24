@@ -61,7 +61,7 @@
                                     </thead>
 
                                     @forelse ($allexams as $examdata)
-                                        <tbody>
+                                    <tbody>
                                             <tr>
                                                 <td>{{ ($allexams->currentPage() - 1) * $allexams->perPage() + $loop->iteration }}
                                                 </td>
@@ -137,13 +137,13 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    @empty
-                                        <tr>
-                                            <td colspan="8" class='text-center'>
-                                                There is nothing to be shown.
-                                            </td>
-                                        </tr>
-                                    @endforelse
+                                            @empty
+                                            <tr>
+                                                <td colspan="8" class='text-center'>
+                                                    There is nothing to be shown.
+                                                </td>
+                                            </tr>
+                                            @endforelse
                                     <!-- exam not found message when searching-->
                                     <tr class="no-search" style="display:none;">
                                         <td colspan="8" class="text-center">
