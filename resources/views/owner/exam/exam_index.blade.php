@@ -41,7 +41,11 @@
                             </div>
                             <!-- display examform deletion flash message-->
                             @if (session()->has('exam_form_deleted'))
-                                <p class='bg-success-light p-2'>{{ session('exam_form_deleted') }}</p>
+                                <p x-data="{ show: true }" x-init="setTimeout(() => {
+                                    show = false;
+                                    $wire.examMessage = null;
+                                }, 3000)" x-show="show"
+                                    class='bg-success-light p-2 mt-1 mb-1'>{{ session('exam_form_deleted') }}</p>
                             @endif
                             <!-- display examform deletion flash message-->
                             <!-- search ends here -->
