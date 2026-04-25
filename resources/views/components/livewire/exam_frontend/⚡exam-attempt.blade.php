@@ -229,7 +229,7 @@ new class extends Component {
                             @forelse ($questions as $question)
                                 <div class="mb-4"> {{-- space between questions --}}
 
-                                    <h4 class="text-capitalize mb-3" style="font-size:15px; color:black;">
+                                    <h4 class="text-capitalize mb-3" style="font-size:15px; color:black;line-height: 1.5em;">
                                         {{ $question->question_text }}
                                     </h4>
 
@@ -241,7 +241,7 @@ new class extends Component {
                                                     {{-- value="{{ $option->id }}"
                         wire:model="answer.{{ $question->id }}" --}}
                                                     wire:model='answer.{{ $question->id }}.{{ $optionindex }}'>
-                                                <label class="form-check-label text-capitalize">
+                                                <label class="form-check-label text-capitalize" style='color:black;'>
                                                     {{ $optiondata }}
                                                 </label>
                                             </div>
