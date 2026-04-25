@@ -46,6 +46,12 @@ Route::middleware(['auth', 'verified', 'role:owner', 'prevent-back-history'])->p
     // single exam entry (display participants indivitual exam data)
     Route::get('/exam/{exam_id}/{participant_id}/exam_single_entry', [SingleEntryController::class, 'index'])->name('exam.single_participants_entry');
     // Exam All Entries Routes Ends Here
+
+
+    // Setting Route Starts Here
+    Route::get('/dashboard/setting', [OwnerController::class, 'settingpage'])->name('owner.dashboard.setting');
+
+    // Setting Route Ends Here
 });
 
 

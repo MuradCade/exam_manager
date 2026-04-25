@@ -22,7 +22,7 @@
     <nav style="flex: 1; overflow-y: auto; padding: 16px 0;">
         <ul style="list-style: none; margin: 0; padding: 0;">
             <li>
-                <a href="{{ route('owner.dashboard') }}"  class="{{ request()->routeIs('owner.dashboard') ? 'active' : '' }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
+                <a href="{{ route('owner.dashboard') }}"  class="{{ request()->routeIs(['owner.dashboard']) ? 'active' : '' }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
                     <i class="fas fa-th-large" style="width: 20px; font-size: 16px;"></i>
                     <span>Dashboard</span>
                 </a>
@@ -53,7 +53,7 @@
         <!-- Settings (separated) -->
         <ul style="list-style: none;  padding: 1px; ">
             <li>
-                <a href="#" class="" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
+                <a href="{{route('owner.dashboard.setting')}}" class="{{ request()->routeIs(['owner.dashboard.setting']) ? 'active' : '' }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s;">
                     <i class="fas fa-cog" style="width: 20px; font-size: 16px;"></i>
                     <span>Settings</span>
                 </a>
