@@ -34,7 +34,7 @@ jobs:
           
           exclude: |
             **/.git*
-            **/.github/**
-            **/.env
+            **/.git*/**
             **/node_modules/**
+            **/.env
           
