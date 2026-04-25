@@ -48,13 +48,18 @@ new class extends Component {
         $this->displayexamcontent();
         if ($this->examform && !empty($this->examform->duration)) {
             // Use the correct property name: examform
-            $parts = explode(':', $this->examform->duration);
-            $minutes = isset($parts[0]) ? (int) $parts[0] : 0;
-            $seconds = isset($parts[1]) ? (int) $parts[1] : 0;
+            // $parts = explode(':', $this->examform->duration);
+            // $minutes = isset($parts[0]) ? (int) $parts[0] : 0;
+            // $seconds = isset($parts[1]) ? (int) $parts[1] : 0;
+            $hours = (int) $this->examform->duration;
 
-            $this->totalSeconds = $minutes * 60 + $seconds;
+            $this->totalSeconds = $hours * 3600;
             $this->initialDuration = $this->totalSeconds;
             $this->isStarted = true;
+
+            // $this->totalSeconds = $minutes * 60 + $seconds;
+            // $this->initialDuration = $this->totalSeconds;
+            // $this->isStarted = true;
         }
     }
 
@@ -137,7 +142,7 @@ new class extends Component {
             </div>
         @else
             <!-- second card -->
-            <div class="col-lg-6 col-md-6 col-sm-12 mx-auto mb-5" x-data="{
+            <div class="col-lg-6 col-md-6 col-sm-12 mx-auto mb-5" {{-- x-data="{
                 secondsLeft: {{ $totalSeconds }}, // Use a static PHP variable to start
                 startTimer() {
                     let interval = setInterval(() => {
@@ -154,7 +159,34 @@ new class extends Component {
                     const secs = this.secondsLeft % 60;
                     return `${mins}:${secs.toString().padStart(2, '0')}`;
                 }
-            }" x-init="startTimer()">
+            }" x-init="startTimer()" --}} x-data="{
+                secondsLeft: {{ $totalSeconds }},
+                interval: null,
+            
+                startTimer() {
+                    // Show full time first, then start countdown after 1 second
+                    setTimeout(() => {
+                        this.interval = setInterval(() => {
+                            if (this.secondsLeft <= 0) {
+                                clearInterval(this.interval);
+                                this.secondsLeft = 0;
+                                $wire.timeUp(0);
+                            } else {
+                                this.secondsLeft--;
+                            }
+                        }, 1000);
+                    }, 1000);
+                },
+            
+                formatTime() {
+                    const hours = Math.floor(this.secondsLeft / 3600);
+                    const minutes = Math.floor((this.secondsLeft % 3600) / 60);
+                    const seconds = this.secondsLeft % 60;
+            
+                    return `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }"
+                x-init="startTimer()">
                 <div class="card shadow-sm p-2 ">
                     <h4 class="card-header text-capitalize" style='font-size:16px; color:black;'>
                         {{ $examform->title }}

@@ -90,11 +90,11 @@
                                                 </td>
                                                 <td>{{ (int) $examdata->questions_sum_marks ?? 0 }}</td>
                                                 <td>{{ match ($examdata->duration) {
-                                                    '1:00' => '1 Hour',
-                                                    '2:00' => '2 Hour',
-                                                    '3:00' => '3 Hour',
-                                                    '4:00' => '4 Hour',
-                                                    '5:00' => '5 Hour',
+                                                    '1' => '1 Hour',
+                                                    '2' => '2 Hour',
+                                                    '3' => '3 Hour',
+                                                    '4' => '4 Hour',
+                                                    '5' => '5 Hour',
                                                 } }}
                                                 </td>
                                                 <td>{{ $examdata->created_at->format('d M Y') }}</td>

@@ -63,11 +63,11 @@
                      <div class="form-group mt-3">
                         <label class="form-label" style='font-size:14px;color:black;'>Exam Duration</label>
                         <select class='form-select' name='duration' style='font-size:14px;color:black;'>
-                            <option value="1:00" {{ $examform->duration == '1:00' ? 'selected' : '' }}>1 Hour</option>
-                            <option value="2:00" {{ $examform->duration == '2:00' ? 'selected' : '' }} >2 Hour</option>
-                            <option value="3:00" {{ $examform->duration == '3:00' ? 'selected' : '' }}>3 Hour</option>
-                            <option value="4:00" {{ $examform->duration == '4:00' ? 'selected' : '' }}>4 Hour</option>
-                            <option value="5:00" {{ $examform->duration == '5:00' ? 'selected' : '' }}>5 Hour</option>
+                            <option value="1" {{ $examform->duration == '1:00' ? 'selected' : '' }}>1 Hour</option>
+                            <option value="2" {{ $examform->duration == '2:00' ? 'selected' : '' }} >2 Hour</option>
+                            <option value="3" {{ $examform->duration == '3:00' ? 'selected' : '' }}>3 Hour</option>
+                            <option value="4" {{ $examform->duration == '4:00' ? 'selected' : '' }}>4 Hour</option>
+                            <option value="5" {{ $examform->duration == '5:00' ? 'selected' : '' }}>5 Hour</option>
                         </select>
                     </div>
                    <!-- <div class="form-group mt-3">

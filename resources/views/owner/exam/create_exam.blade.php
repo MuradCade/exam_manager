@@ -70,11 +70,11 @@
                     <div class="form-group mt-3">
                         <label class="form-label" style='font-size:14px;color:black;'>Exam Duration</label>
                         <select class='form-select' name='duration' style='font-size:14px;color:black;'>
-                            <option value="1:00">1 Hour</option>
-                            <option value="2:00">2 Hour</option>
-                            <option value="3:00">3 Hour</option>
-                            <option value="4:00">4 Hour</option>
-                            <option value="5:00">5 Hour</option>
+                            <option value="1">1 Hour</option>
+                            <option value="1">2 Hour</option>
+                            <option value="3">3 Hour</option>
+                            <option value="4">4 Hour</option>
+                            <option value="5">5 Hour</option>
                         </select>
                     </div>
                     <button 

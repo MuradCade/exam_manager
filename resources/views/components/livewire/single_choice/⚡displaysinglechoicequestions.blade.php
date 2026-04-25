@@ -186,7 +186,7 @@ new class extends Component {
                                             @if ($editingQuestionId === $questiondata->id)
                                                 <label class="form-label fw-bold"
                                                     style='font-size:14px; color:black;'>Question</label>
-                                                <textarea class="form-control" rows="3" wire:model="question" placeholder="Enter your question...">{{ $questiondata['question_text'] }}</textarea>
+                                                <textarea class="form-control" rows="3"  wire:model="question" placeholder="Enter your question...">{{ $questiondata['question_text'] }}</textarea>
                                                 @error('question')
                                                     <div class="text-danger small">{{ $message }}</div>
                                                 @enderror
