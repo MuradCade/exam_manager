@@ -83,8 +83,8 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col" style="font-size: 13px;">Participant</th>
-                                        <th scope="col" style="font-size: 13px;">Examination Name</th>
-                                        <th scope="col" style="font-size: 13px;" class="text-end">Submitted At</th>
+                                        <th scope="col" style="font-size: 13px;">Examination_Name</th>
+                                        <th scope="col" style="font-size: 13px;" class="text-end">Submitted_At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
