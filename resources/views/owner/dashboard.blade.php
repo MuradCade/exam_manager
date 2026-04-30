@@ -92,17 +92,24 @@
                                         <tr>
                                             <td>
                                                 <div class="d-flex flex-column">
-                                                    <span
-                                                        class="fw-bold text-dark text-capitalize">{{ $participantdata->fullname ?? 'Student' }}</span>
+                                                    <span class="fw-bold text-dark text-capitalize">
+                                                        <a
+                                                            class='text-black text-decoration-underline'
+                                                            href="{{ route('exam.single_participants_entry', [
+                                                                'exam_id' => base64_encode($participantdata->examform->id),
+                                                                'participant_id'=>base64_encode($participantdata->id)
+                                                            ]) }}">
+                                                            {{ $participantdata->fullname ?? 'Student' }}
+                                                        </a>
+                                                    </span>
                                                     <small class="text-muted">ID:
                                                         {{ $participantdata->participant_id ?? 'N/A' }}</small>
                                                 </div>
                                             </td>
                                             <td>
                                                 @if ($participantdata->examform)
-                                                    <a href="{{ route('exam.single_participants_entry', [
+                                                    <a href="{{ route('exam.allentries.index', [
                                                         'exam_id' => base64_encode($participantdata->examform->id),
-                                                        'participant_id' => base64_encode($participantdata->id),
                                                     ]) }}"
                                                         class="text-muted text-decoration-underline text-capitalize">
                                                         {{ $participantdata->examform->title }}
