@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class examform extends Model
 {
+    use HasFactory;
     protected $table = 'exam_forms';
 
     protected $fillable = [
