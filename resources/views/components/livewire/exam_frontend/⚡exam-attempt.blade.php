@@ -229,22 +229,30 @@ new class extends Component {
                             @forelse ($questions as $question)
                                 <div class="mb-4"> {{-- space between questions --}}
 
-                                    <h4 class="text-capitalize mb-3" style="font-size:15px; color:black;line-height: 1.5em;">
+                                    <h4 class="text-capitalize mb-3"
+                                        style="font-size:15px; color:black;line-height: 1.5em;">
                                         {{ $question->question_text }}
                                     </h4>
 
                                     @foreach ($question->options as $option)
                                         @foreach ($option->option_text as $optionindex => $optiondata)
-                                            <div class="form-check mb-2"> {{-- space between options --}}
-                                                <input type="checkbox" class="me-2" {{-- wire:model="answer.{{ $question->id }}"
-                        value="{{ $optionindex }}" --}}
-                                                    {{-- value="{{ $option->id }}"
-                        wire:model="answer.{{ $question->id }}" --}}
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" class="form-check-input mt-1"
+                                                    id="option_{{ $question->id }}_{{ $optionindex }}"
                                                     wire:model='answer.{{ $question->id }}.{{ $optionindex }}'>
-                                                <label class="form-check-label text-capitalize" style='color:black;'>
+                                                <label class="form-check-label text-capitalize"
+                                                    for="option_{{ $question->id }}_{{ $optionindex }}"
+                                                    style="color:black; line-height:1.5;">
                                                     {{ $optiondata }}
                                                 </label>
                                             </div>
+                                            {{-- <div class="form-check mb-2"> space between options --}}
+                                            {{-- <input type="checkbox" class="form-check-input mt-1" --}}
+                                            {{-- wire:model='answer.{{ $question->id }}.{{ $optionindex }}'> --}}
+                                            {{-- <label class="form-check-label text-capitalize" style='color:black;'> --}}
+                                            {{-- {{ $optiondata }} --}}
+                                            {{-- </label> --}}
+                                            {{-- </div> --}}
                                         @endforeach
                                     @endforeach
                                 </div>
