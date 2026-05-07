@@ -21,7 +21,7 @@ class AllEntriesController
 
         // if (!$examform || $examform->user_id != Auth::id()) {
         //     return redirect()->route('exam');
-        // }
+        // }     
 
         // // 1. Fetch participants
         // $participantsdata = participants::where('exam_id', $examId)
