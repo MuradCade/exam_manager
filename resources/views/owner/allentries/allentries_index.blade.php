@@ -43,6 +43,11 @@
                                     <input type="text" id='entrieslistsearch' class="form-control"
                                         style="font-size:14px;" placeholder="Search Student By ID">
                                 </div>
+                                <div class='col-lg-6 col-md-6 col-sm-12 text-end'>
+                                    <a 
+                                    href='{{route('exam.allentries.export.excelformat',['exam_id'=>base64_encode($examform->id)])}}'
+                                    class='btn btn-success btn-sm shadow-0 text-white fw-bold text-capitalize' style='font-size:13px;'>Export Data</a>
+                                </div>
                             </div>
                             <!-- search ends here-->
                             <div class="table-responsive">

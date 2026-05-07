@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Owner\Allentries;
 
 use App\Models\examform;
 use App\Models\examquestions;
-use App\Models\participants;
 use App\Models\participant_option_answer;
+use App\Models\participants;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class AllEntriesController
 {
@@ -232,5 +235,86 @@ class AllEntriesController
         } catch (ModelNotFoundException $exception) {
             return redirect()->route('exam.allentries.index', ['exam_id' => $exam_id])->with('participant_deletion_failed', 'Failed to delete: Participant not found or unauthorized.');
         }
+    }
+    public function export_excelsheet($exam_id)
+    {
+        $examId = base64_decode($exam_id);
+        $examform = examform::where('id', $examId)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+        $questions = examquestions::where('exam_id', $examId)
+            ->with('options')
+            ->get()
+            ->keyBy('id');
+        $totalMarks = $questions->sum('marks');
+        $participantsdata = participants::where('exam_id', $examId)
+            ->orderBy('id', 'asc')
+            ->get();
+        $participantIdentities = $participantsdata->pluck('id')->toArray();
+        $allAnswers = participant_option_answer::where('exam_id', $examId)
+            ->whereIn('participant_id', $participantIdentities)
+            ->get()
+            ->groupBy('participant_id');
+        $examType = $examform->exam_type;
+        $filename = Str::slug($examform->title) . '.xlsx';
+
+        // Build spreadsheet
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Header row
+        $sheet->fromArray(['#', 'Student_ID', 'Student_Fullname', 'Score', 'Submitted_Date'], null, 'A1');
+
+        $rowNumber = 2; // data starts at row 2
+        foreach ($participantsdata as $index => $participant) {
+            $totalScore = 0;
+            $answers = $allAnswers->get($participant->id) ?? collect();
+
+            foreach ($answers as $answer) {
+                $question = $questions->get($answer->question_id);
+                if (!$question) continue;
+                $selected = is_array($answer->selected_option)
+                    ? $answer->selected_option
+                    : json_decode($answer->selected_option, true) ?? [];
+                $selectedOptions = (array) $selected;
+                foreach ($question->options as $option) {
+                    if ($examType === 'single_choice') {
+                        if (in_array($option->correct_option, $selectedOptions)) {
+                            $totalScore += $question->marks;
+                        }
+                    } elseif ($examType === 'multi_choice') {
+                        $correctOptions = (array) $option->correct_option;
+                        if (count(array_intersect($selectedOptions, $correctOptions)) > 0) {
+                            $totalScore += $question->marks;
+                        }
+                    }
+                }
+            }
+
+            $sheet->fromArray([
+                $index + 1,
+                $participant->participant_id,
+                $participant->fullname,
+                $totalScore . '/' . $totalMarks,
+                $participant->created_at->format('d/m/Y'),
+            ], null, 'A' . $rowNumber);
+
+            $rowNumber++;
+        }
+
+        $filename = Str::slug($examform->title) . '.xlsx';
+        $headers = [
+            'Content-Type'        => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+            'Cache-Control'       => 'max-age=0',
+        ];
+
+        $writer = new Xlsx($spreadsheet);
+
+        $callback = function () use ($writer) {
+            $writer->save('php://output');
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }

@@ -42,7 +42,9 @@ Route::middleware(['auth', 'verified', 'role:owner', 'prevent-back-history'])->p
 
     // Exam All Entries Routes Starts Here
     Route::get('/exam/{exam_id}/allexam_entries', [AllEntriesController::class, 'index'])->name('exam.allentries.index');
+    Route::get('/exam/{exam_id}/allexam_entries/export_excelformat', [AllEntriesController::class, 'export_excelsheet'])->name('exam.allentries.export.excelformat');
     Route::get('/exam/{exam_id}/allexam_entries/{participant_id}/delete', [AllEntriesController::class, 'delete_participants'])->name('exam.allentries.participants.delete');
+
     // single exam entry (display participants indivitual exam data)
     Route::get('/exam/{exam_id}/{participant_id}/exam_single_entry', [SingleEntryController::class, 'index'])->name('exam.single_participants_entry');
     // Exam All Entries Routes Ends Here
